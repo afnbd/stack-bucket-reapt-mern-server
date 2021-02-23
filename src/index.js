@@ -7,6 +7,14 @@ const mongoose = require("mongoose");
 
 
 const app = express();
+mongoose.connect('mongodb://localhost:27017/stack-bucket-mern', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log("Database Connected")
+}).catch((e) => {
+    console.log(e);
+})
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../',"public")))
@@ -14,9 +22,10 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    throw new Error('custom Error');
+    // throw new Error('custom Error');
     res.status(200).json({
         name: "afran",
+        email: "afransheak987@gmail.com",
     })
 })
 
